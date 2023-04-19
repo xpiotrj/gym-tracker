@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gymtracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="login.js"></script>
+</head>
+<body>
+    <header><button onclick="openNav()" id="sidenav_btn" style="display: none;"><img src="icons8-menu-50.png" alt=""></button></header>
+    <div class="sidenav" id="sidenav" style="display: none;">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#" onclick="changeContainer('add_training')">Dodaj trening</a>
+        <a href="#" onclick="changeContainer('all_tables')">Twoje treningi</a>
+        <a href="#" onclick="changeContainer('all_exercises')">Twoje ćwiczenia</a>
+    </div>
+    <div class="container" style="display: none;" id="add_training">
+        <div style="width: 95%; margin-bottom: -20px;"><button class="img-button" style="float: left;" onclick="changeContainer('load_last_training'); getTreningTables()"><img src="icons8-time-machine-24.png" alt=""></button>
+            <button class="img-button" id="reset_btn" style="float: right;" onclick="reserAddTrainingForm(this)"><img src="icons8-reset-24.png" alt=""></button></div>
+        <h2>Dodaj trening</h2>
+        <input type="text" name="" id="training_name" placeholder="Nazwa treningu">
+        <div class="option">
+            <div id="added2">
+            <h4></h4>
+            <input type="text" class="exercise_name" name="" id="" placeholder="Nazwa ćwiczenia">
+            <select onchange="changeExerciseType(this)" name="" class="type">
+                <option value="strenght">siłowy</option>
+                <option value="time">czasowy</option>
+            </select>
+            <input type="number" class="series strenght" name="" id="" placeholder="Ilość serii">
+            <input type="number" class="reps strenght" name="" id="" placeholder="Ilość powtórzeń">
+            <input type="number" class="weight strenght" name="" id="" placeholder="Ciężar (kg)">
+            </div>
+            <button style="margin-top: 10px;" onclick="addNewPart(this, 'strenght')"><img src="icons8-plus-48.png" alt="icons8-plus-48.png"></button>
+            <button onclick="deleteNewestPart(this, 'strenght')"><img src="icons8-minus-48.png" alt=""></button>
+            <button onclick="deleteOption(this)"><img src="icons8-trash-24.png" alt=""></button>
+        </div>
+        <div id="added"></div>
+        <input type="button" class="add-exercise-btn" style="font-size: 16px; margin-bottom: 10px; margin-top: 20px;" onclick="addNewExercise()" value="DODAJ ĆWICZENIE">
+        <input type="button" class="add-exercise-btn"  onclick="addExercises()" value="DODAJ TRENING">
+    </div>
+
+    <div class="container" style="display: none" id="all_tables">
+        <h2>Twoje treningi</h2>
+        <div  class="scroll"></div>
+    </div>
+    <div class="container" style="display: none" id="load_last_training">
+        <div style="width: 95%; height:25px; margin-bottom: -5px;"><button onclick="changeContainer('add_training')" class="img-button" style="float: left;"><img src="icons8-left-24.png" alt=""></button></div>
+        <h2>Wybierz trening</h2>
+        <div class="scroll" style="margin-top: 0px;"></div>
+    </div>
+    <div class="container" style="display: none" id="training_info">
+        <div style="width: 95%; height:25px; margin-bottom: -5px;"><button onclick="changeContainer('add_training')" class="img-button" style="float: left;"><img src="icons8-left-24.png" alt=""></button></div>
+        <div class="scroll"></div>
+    </div>
+    <div class="container" style="display: flex;" id="main_login">
+        <h2>Zaloguj się</h2>
+        <div class="form">
+            <input type="text" id="login" placeholder="login">
+            <input type="password" id="password" placeholder="hasło">
+            <div id="login_error">Błędne dane logowania</div>
+            <input type="button" value="Zaloguj się" onclick="login()">
+            <input type="button" style="background-color: transparent; border: none; font-size: 14px; color: hsl(214, 23%, 53%); text-decoration: underline;" value="Zarejestruj się" onclick="changeContainer('main_signup')">
+        </div>
+    </div>
+    <div class="container" style="display: none;" id="main_signup">
+        <h2>Zarejestruj się</h2>
+        <div class="form">
+            <input type="text" id="login_r" placeholder="login (min. 6 znaków)">
+            <input type="password" id="password_r" placeholder="hasło (min. 8 znaków)">
+            <div id="login_error_r"></div>
+            <input type="button" value="Zarejestruj się" onclick="signUp()">
+            <input type="button" style="background-color: transparent; border: none; font-size: 14px; color: hsl(214, 23%, 53%); text-decoration: underline;" value="Zaloguj się" onclick="changeContainer('main_login')">
+        </div>
+    </div>
+    <div class="container" style="display: none;" id="all_exercises"></div>
+</body>
+</html>
